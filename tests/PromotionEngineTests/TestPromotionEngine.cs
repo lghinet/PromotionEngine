@@ -12,27 +12,31 @@ namespace PromotionEngineTests
     {
         private List<ItemPriceModel> _unitPrices = new()
         {
-            new() {ItemCode = "A", Price = 50},
-            new() {ItemCode = "B", Price = 30},
-            new() {ItemCode = "C", Price = 20},
-            new() {ItemCode = "D", Price = 10},
+            new() {ItemCode = "A", UnitPrice = 50},
+            new() {ItemCode = "B", UnitPrice = 30},
+            new() {ItemCode = "C", UnitPrice = 20},
+            new() {ItemCode = "D", UnitPrice = 10},
         };
 
         [Fact]
         public void RunEngineWithNoPromotions()
         {
             //arrange
-           
-
-            var items = new CartModel()
+            var engine = new PromotionEngine(_unitPrices);
+            engine.AddPromotion((cart, item) =>
             {
-
-              
-            }
+                if (item.ItemCode == "A" && item.Quantity >= 3)
+                {
+                    item.Value = 130;
+                    item.Quantity -= 3;
+                }
+            });
 
             //act 
+            var cart = engine.Run(new CartModel());
 
             // Assert
+            cart.Total.Should().Be(100);
         }
     }
 }
