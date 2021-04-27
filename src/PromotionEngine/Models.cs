@@ -15,6 +15,7 @@ namespace PromotionEngine
         public string ItemCode { set; get; }
         public double Quantity { set; get; }
         public double Value { set; get; }
+        public double UnitPrice { set; get; }
     }
 
     public class ItemPriceModel

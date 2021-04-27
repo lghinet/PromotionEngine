@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PromotionEngine;
+using PromotionEngine.Promotions;
 using Xunit;
 
 namespace PromotionEngineTests
@@ -22,16 +23,9 @@ namespace PromotionEngineTests
         public void RunEngineWithNoPromotions()
         {
             //arrange
-            var engine = new Engine(_unitPrices);
-            engine.AddPromotion((cart) =>
-            {
-                if (cart.ite.Contains())
-                if (item.ItemCode == "A" && item.Quantity >= 3)
-                {
-                    item.Value = 130;
-                    item.Quantity -= 3;
-                }
-            });
+            var engine = new SimpleEngine<CartModel>();
+            engine.AddPromotion(new NItemsFixedPrice("A", 3, 130));
+            engine.AddPromotion(new NItemsFixedPrice("A", 3, 130));
 
             //act 
             var cart = engine.Run(new CartModel());
