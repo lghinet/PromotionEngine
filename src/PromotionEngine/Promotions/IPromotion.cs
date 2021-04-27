@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PromotionEngine.Promotions
+﻿namespace PromotionEngine.Promotions
 {
+    /// <summary>
+    /// interface for adding different promotions implementations
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IPromotion<T>
     {
         public T Apply(T model);

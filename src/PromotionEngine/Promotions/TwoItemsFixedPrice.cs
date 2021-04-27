@@ -3,6 +3,10 @@ using System.Linq;
 
 namespace PromotionEngine.Promotions
 {
+    /// <summary>
+    /// TwoItemsFixedPrice is an IPromotion implementation
+    /// when two items are added in the cart at the same time, a fixedPrice is used 
+    /// </summary>
     public class TwoItemsFixedPrice : IPromotion<CartModel>
     {
         private readonly string _itemCode1;

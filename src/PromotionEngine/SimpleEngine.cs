@@ -1,13 +1,12 @@
-﻿using System;
+﻿using PromotionEngine.Promotions;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PromotionEngine.Promotions;
 
 namespace PromotionEngine
 {
+    /// <summary>
+    /// a simple pipeline for running multiple promotions 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SimpleEngine<T>
     {
         private readonly List<IPromotion<T>> _promotions = new ();

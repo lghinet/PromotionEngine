@@ -2,6 +2,10 @@
 
 namespace PromotionEngine.Promotions
 {
+    /// <summary>
+    /// NItemsFixedPrice is an IPromotion implementation
+    /// when an item is added n Times, a fixed price will be used for the bulk 
+    /// </summary>
     public class NItemsFixedPrice : IPromotion<CartModel>
     {
         private readonly string _itemCode;

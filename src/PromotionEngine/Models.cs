@@ -25,10 +25,5 @@ namespace PromotionEngine
             Value = UnitPrice * Quantity;
         }
     }
-
-    public class ItemPriceModel
-    {
-        public string ItemCode { set; get; }
-        public double UnitPrice { set; get; }
-    }
+    
 }
