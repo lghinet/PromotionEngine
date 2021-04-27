@@ -12,20 +12,12 @@ namespace PromotionEngineTests
 {
     public class TestPromotionEngine
     {
-        private List<ItemPriceModel> _unitPrices = new()
-        {
-            new() {ItemCode = "A", UnitPrice = 50},
-            new() {ItemCode = "B", UnitPrice = 30},
-            new() {ItemCode = "C", UnitPrice = 20},
-            new() {ItemCode = "D", UnitPrice = 10},
-        };
 
         [Fact]
         public void RunEngineWithNoPromotions()
         {
             //arrange
             var engine = new SimpleEngine<CartModel>();
-
             var cart = new CartModel
             {
                 Items = new()
@@ -41,6 +33,32 @@ namespace PromotionEngineTests
 
             // Assert
             result.TotalValue.Should().Be(100);
+        }
+
+        [Fact]
+        public void RunEngineScenario1()
+        {
+            //arrange
+            var engine = new SimpleEngine<CartModel>();
+            engine.AddPromotion(new NItemsFixedPrice("A", 3, 130));
+            engine.AddPromotion(new NItemsFixedPrice("B", 2, 45));
+            engine.AddPromotion(new TwoItemsFixedPrice("C", "D", 30));
+
+            var cart = new CartModel
+            {
+                Items = new()
+                {
+                    new("A", 5, 50),
+                    new("B", 5, 30),
+                    new("C", 1, 20),
+                }
+            };
+
+            //act 
+            var result = engine.Run(cart);
+
+            // Assert
+            result.TotalValue.Should().Be(370);
         }
     }
 }

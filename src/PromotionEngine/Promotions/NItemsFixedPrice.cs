@@ -5,10 +5,10 @@ namespace PromotionEngine.Promotions
     public class NItemsFixedPrice : IPromotion<CartModel>
     {
         private readonly string _itemCode;
-        private readonly double _nTimes;
+        private readonly int _nTimes;
         private readonly double _fixedPrice;
 
-        public NItemsFixedPrice(string itemCode, double nTimes, double fixedPrice)
+        public NItemsFixedPrice(string itemCode, int nTimes, double fixedPrice)
         {
             _itemCode = itemCode;
             _nTimes = nTimes;
@@ -22,7 +22,7 @@ namespace PromotionEngine.Promotions
                 return cart;
 
             var n = item.Quantity / _nTimes;
-            item.Value = n * _fixedPrice + (item.Quantity - n) * item.UnitPrice;
+            item.Value = n * _fixedPrice + (item.Quantity % _nTimes) * item.UnitPrice;
 
             return cart;
         }

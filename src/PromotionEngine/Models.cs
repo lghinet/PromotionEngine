@@ -13,11 +13,11 @@ namespace PromotionEngine
     public class ItemModel
     {
         public string ItemCode { get; }
-        public double Quantity { get; }
+        public int Quantity { get; }
         public double Value { set; get; }
         public double UnitPrice { get; }
 
-        public ItemModel(string itemCode, double quantity, double unitPrice)
+        public ItemModel(string itemCode, int quantity, double unitPrice)
         {
             ItemCode = itemCode;
             Quantity = quantity;
