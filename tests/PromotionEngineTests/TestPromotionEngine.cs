@@ -22,9 +22,10 @@ namespace PromotionEngineTests
         public void RunEngineWithNoPromotions()
         {
             //arrange
-            var engine = new PromotionEngine(_unitPrices);
-            engine.AddPromotion((cart, item) =>
+            var engine = new Engine(_unitPrices);
+            engine.AddPromotion((cart) =>
             {
+                if (cart.ite.Contains())
                 if (item.ItemCode == "A" && item.Quantity >= 3)
                 {
                     item.Value = 130;
