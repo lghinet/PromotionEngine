@@ -12,10 +12,18 @@ namespace PromotionEngine
 
     public class ItemModel
     {
-        public string ItemCode { set; get; }
-        public double Quantity { set; get; }
+        public string ItemCode { get; }
+        public double Quantity { get; }
         public double Value { set; get; }
-        public double UnitPrice { set; get; }
+        public double UnitPrice { get; }
+
+        public ItemModel(string itemCode, double quantity, double unitPrice)
+        {
+            ItemCode = itemCode;
+            Quantity = quantity;
+            UnitPrice = unitPrice;
+            Value = UnitPrice * Quantity;
+        }
     }
 
     public class ItemPriceModel
